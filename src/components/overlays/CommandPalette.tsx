@@ -5,7 +5,6 @@ import {
   ArrowRight,
   Briefcase,
   ExternalLink,
-  FileText,
   FolderGit2,
   Hash,
   Mail,
@@ -31,7 +30,6 @@ const sectionIcons = {
   skills: Hash,
   projects: FolderGit2,
   experience: Briefcase,
-  contact: Mail,
 } as const;
 
 /**
@@ -42,7 +40,6 @@ export function CommandPalette() {
     isCommandPaletteOpen,
     closeCommandPalette,
     navigateToSection,
-    openResume,
     copyEmail,
     selectProject,
   } = usePortfolioUi();
@@ -81,15 +78,6 @@ export function CommandPalette() {
         label: `Copy email (${developerProfile.email})`,
         onSelect: () => {
           void copyEmail();
-          closeCommandPalette();
-        },
-      },
-      {
-        id: 'view-resume',
-        category: 'action',
-        label: 'View curriculum vitae',
-        onSelect: () => {
-          openResume();
           closeCommandPalette();
         },
       },
@@ -150,7 +138,7 @@ export function CommandPalette() {
             )
       ),
     ];
-  }, [query, copyEmail, closeCommandPalette, openResume, navigateToSection, selectProject]);
+  }, [query, copyEmail, closeCommandPalette, navigateToSection, selectProject]);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -281,8 +269,6 @@ export function CommandPalette() {
                     item,
                     item.id === 'copy-email' ? (
                       <Mail className="h-4 w-4 text-rose-500 dark:text-rose-400" />
-                    ) : item.id === 'view-resume' ? (
-                      <FileText className="h-4 w-4 text-rose-500 dark:text-rose-400" />
                     ) : (
                       <ExternalLink className="h-4 w-4 text-stone-500 dark:text-stone-400" />
                     )
@@ -316,7 +302,7 @@ export function CommandPalette() {
           {projectItems.length > 0 && (
             <div>
               <p className="px-3 py-1 text-[10px] font-bold tracking-widest text-stone-400 uppercase dark:text-stone-500">
-                Works ({projectItems.length})
+                Projects ({projectItems.length})
               </p>
               <div className="space-y-0.5">
                 {projectItems.map((item) =>

@@ -86,10 +86,10 @@ export function Skills() {
           <div>
             <div className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase dark:text-rose-400">
               <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-              <span>Skills & toolkit</span>
+              <span>Skills</span>
             </div>
             <h2 className="font-display text-2xl tracking-tight text-stone-900 sm:text-3xl dark:text-stone-100">
-              Frontend architecture & UI toolkit
+              Frontend architecture & UI skills
             </h2>
           </div>
 

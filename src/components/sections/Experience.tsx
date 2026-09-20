@@ -1,9 +1,8 @@
 import { ArrowUpRight, Calendar, CheckCircle2, MapPin } from 'lucide-react';
 import { experience } from '@/data/portfolio';
-import { OpenResumeButton } from '@/components/ui/OpenResumeButton';
 
 /**
- * Career timeline. Hidden until real experience is added to the data layer.
+ * Experience timeline. Hidden until real experience is added to the data layer.
  */
 export function Experience() {
   if (experience.length === 0) {
@@ -16,21 +15,14 @@ export function Experience() {
       className="relative border-b border-stone-200/80 bg-[#FAF8F5] py-20 dark:border-stone-800/80 dark:bg-[#151413]"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
-        <div className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div>
-            <div className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase dark:text-rose-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-              <span>Career track</span>
-            </div>
-            <h2 className="font-display text-2xl tracking-tight text-stone-900 sm:text-3xl dark:text-stone-100">
-              Experience
-            </h2>
+        <div className="mb-12">
+          <div className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase dark:text-rose-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+            <span>Experience</span>
           </div>
-
-          <OpenResumeButton className="inline-flex cursor-pointer items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase underline underline-offset-4 hover:text-stone-900 dark:text-rose-400 dark:hover:text-stone-100">
-            <span>View full CV</span>
-            <ArrowUpRight className="h-3.5 w-3.5" />
-          </OpenResumeButton>
+          <h2 className="font-display text-2xl tracking-tight text-stone-900 sm:text-3xl dark:text-stone-100">
+            Roles & professional work
+          </h2>
         </div>
 
         <div className="space-y-6">

@@ -1,23 +1,21 @@
 'use client';
 
-import { useState } from 'react';
-import { ArrowDown, ArrowUpRight, Check, Copy, Github, Linkedin, Mail } from 'lucide-react';
-import { developerProfile, projects } from '@/data/portfolio';
+import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { developerProfile, projects, socialLinks } from '@/data/portfolio';
 import { usePortfolioUi } from '@/components/layout/portfolio-ui';
 import { HeroPortrait } from '@/components/sections/HeroPortrait';
+
+const socialIcons = {
+  email: Mail,
+  github: Github,
+  linkedin: Linkedin,
+} as const;
 
 /**
  * Opening section with identity, primary actions, and portrait.
  */
 export function Hero() {
-  const { copyEmail, navigateToSection, openResume } = usePortfolioUi();
-  const [hasCopiedEmail, setHasCopiedEmail] = useState(false);
-
-  const handleCopyEmail = async () => {
-    await copyEmail();
-    setHasCopiedEmail(true);
-    window.setTimeout(() => setHasCopiedEmail(false), 2000);
-  };
+  const { navigateToSection, openResume } = usePortfolioUi();
 
   return (
     <section
@@ -57,64 +55,44 @@ export function Hero() {
                 }
                 className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-stone-900 px-6 py-3 text-xs font-bold tracking-widest text-white uppercase shadow-md transition-colors hover:bg-rose-600 active:scale-[0.99] dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-rose-500 dark:hover:text-white"
               >
-                <span>{projects.length > 0 ? 'View selected works' : 'View toolkit'}</span>
+                <span>{projects.length > 0 ? 'View projects' : 'View skills'}</span>
                 <ArrowDown className="h-3.5 w-3.5" />
               </button>
 
-              <button
-                type="button"
-                onClick={() => navigateToSection('contact')}
-                className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-stone-200 bg-white px-6 py-3 text-xs font-bold tracking-widest text-stone-900 uppercase shadow-xs transition-colors hover:border-rose-400 hover:text-rose-600 active:scale-[0.99] dark:border-stone-800 dark:bg-stone-900 dark:text-stone-100 dark:hover:border-rose-500 dark:hover:text-rose-400"
-              >
-                <span>Get in touch</span>
-                <Mail className="h-3.5 w-3.5 text-rose-500 dark:text-rose-400" />
-              </button>
-
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-stone-200 bg-stone-50 px-4 py-3 text-xs font-bold tracking-widest text-stone-600 uppercase transition-colors hover:border-stone-300 hover:text-stone-900 dark:border-stone-800 dark:bg-stone-800/80 dark:text-stone-300 dark:hover:border-stone-700 dark:hover:text-stone-100"
-              >
-                {hasCopiedEmail ? (
-                  <>
-                    <Check className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-emerald-700 dark:text-emerald-300">Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-3.5 w-3.5 text-stone-400 dark:text-stone-500" />
-                    <span>Copy email</span>
-                  </>
-                )}
-              </button>
+              {socialLinks.map((socialLink) => {
+                const Icon = socialIcons[socialLink.id];
+                const isExternal = socialLink.id !== 'email';
+                return (
+                  <a
+                    key={socialLink.id}
+                    href={socialLink.href}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noreferrer' : undefined}
+                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-stone-200 bg-stone-50 px-4 py-3 text-xs font-bold tracking-widest text-stone-600 uppercase transition-colors hover:border-stone-300 hover:text-stone-900 dark:border-stone-800 dark:bg-stone-800/80 dark:text-stone-300 dark:hover:border-stone-700 dark:hover:text-stone-100"
+                  >
+                    <Icon
+                      className={`h-3.5 w-3.5 ${
+                        socialLink.id === 'linkedin'
+                          ? 'text-blue-600 dark:text-blue-400'
+                          : socialLink.id === 'email'
+                            ? 'text-rose-500 dark:text-rose-400'
+                            : 'text-stone-400 dark:text-stone-500'
+                      }`}
+                    />
+                    <span>{socialLink.label}</span>
+                    {isExternal && (
+                      <ArrowUpRight className="h-3 w-3 text-stone-400 dark:text-stone-600" />
+                    )}
+                  </a>
+                );
+              })}
             </div>
 
-            <div className="flex flex-wrap items-center gap-5 border-t border-stone-200/80 pt-4 text-xs font-bold tracking-widest text-stone-500 uppercase dark:border-stone-800/80 dark:text-stone-400">
-              <span className="font-mono text-stone-400 dark:text-stone-500">Connect:</span>
-              <a
-                href={developerProfile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 transition-colors hover:text-stone-900 dark:hover:text-stone-100"
-              >
-                <Github className="h-3.5 w-3.5" />
-                <span>GitHub</span>
-                <ArrowUpRight className="h-3 w-3 text-stone-400 dark:text-stone-600" />
-              </a>
-              <a
-                href={developerProfile.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 transition-colors hover:text-stone-900 dark:hover:text-stone-100"
-              >
-                <Linkedin className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
-                <span>LinkedIn</span>
-                <ArrowUpRight className="h-3 w-3 text-stone-400 dark:text-stone-600" />
-              </a>
+            <div className="border-t border-stone-200/80 pt-4 dark:border-stone-800/80">
               <button
                 type="button"
                 onClick={openResume}
-                className="ml-auto cursor-pointer font-bold text-rose-600 underline underline-offset-4 hover:text-stone-900 dark:text-rose-400 dark:hover:text-stone-100"
+                className="cursor-pointer text-xs font-bold tracking-widest text-rose-600 uppercase underline underline-offset-4 hover:text-stone-900 dark:text-rose-400 dark:hover:text-stone-100"
               >
                 View full resume →
               </button>

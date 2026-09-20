@@ -1,6 +1,5 @@
-import { ArrowRight, CheckCircle2, Figma, Layers, Palette, Sparkles } from 'lucide-react';
+import { CheckCircle2, Figma, Layers, Palette, Sparkles } from 'lucide-react';
 import { aboutPillars, aboutWorkingPrinciples, developerProfile } from '@/data/portfolio';
-import { OpenResumeButton } from '@/components/ui/OpenResumeButton';
 import type { AboutPillar } from '@/types/portfolio';
 
 const pillarIcons = {
@@ -25,18 +24,11 @@ export function About() {
       className="relative border-b border-stone-200/80 bg-[#FAF8F5] py-20 dark:border-stone-800/80 dark:bg-[#121110]"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-8">
-        <div className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div>
-            <div className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase dark:text-rose-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-              <span>Frontend development</span>
-            </div>
+        <div className="mb-12">
+          <div className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase dark:text-rose-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+            <span>Frontend development</span>
           </div>
-
-          <OpenResumeButton className="inline-flex cursor-pointer items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase underline underline-offset-4 hover:text-stone-900 dark:text-rose-400 dark:hover:text-stone-100">
-            <span>Read full background</span>
-            <ArrowRight className="h-3.5 w-3.5" />
-          </OpenResumeButton>
         </div>
 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
@@ -54,25 +46,6 @@ export function About() {
                   {paragraph}
                 </p>
               ))}
-
-              <div className="border-t border-stone-100 pt-4 dark:border-stone-800">
-                <p className="mb-3 font-mono text-xs font-bold tracking-widest text-stone-400 uppercase dark:text-stone-500">
-                  Working principles
-                </p>
-                <div className="space-y-3 text-xs text-stone-700 dark:text-stone-300">
-                  {aboutWorkingPrinciples.map((principle) => (
-                    <div key={principle.title} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                      <div>
-                        <p className="font-bold text-stone-800 dark:text-stone-200">{principle.title}</p>
-                        <p className="mt-0.5 leading-relaxed text-stone-600 dark:text-stone-400">
-                          {principle.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 
@@ -96,6 +69,28 @@ export function About() {
                   </h3>
                   <p className="text-xs leading-relaxed text-stone-600 dark:text-stone-400">
                     {pillar.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 lg:mt-16">
+          <p className="mb-6 font-mono text-xs font-bold tracking-widest text-stone-400 uppercase dark:text-stone-500">
+            Working principles
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {aboutWorkingPrinciples.map((principle) => (
+              <div
+                key={principle.title}
+                className="flex items-start gap-3 rounded-xl border border-stone-200/80 bg-white p-5 shadow-xs dark:border-stone-800 dark:bg-stone-900"
+              >
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                <div className="text-xs text-stone-700 dark:text-stone-300">
+                  <p className="font-bold text-stone-800 dark:text-stone-200">{principle.title}</p>
+                  <p className="mt-1.5 leading-relaxed text-stone-600 dark:text-stone-400">
+                    {principle.description}
                   </p>
                 </div>
               </div>

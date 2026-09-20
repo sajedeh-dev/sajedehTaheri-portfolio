@@ -17,7 +17,7 @@ export const developerProfile: DeveloperProfile = {
   status: 'Open to frontend development opportunities',
   availableForHire: true,
   shortBio:
-    'Frontend developer building production interfaces with React, TypeScript, and Next.js. I moved from personal learning projects into professional product work—responsive UI, API integration, and maintainable component implementation.',
+    'Frontend developer building production interfaces with React, TypeScript, and Next.js. I work across the frontend—from translating product requirements into responsive interfaces to integrating APIs and building maintainable component systems.',
   aboutStory: [
     "I'm a frontend developer with a Computer Engineering background, focused on building reliable product interfaces with React, TypeScript, and Next.js.",
     'My work goes beyond implementing screens. I work with real API contracts, application state, authentication flows, and product requirements to turn designs and specifications into interfaces that are structured, responsive, and maintainable.',
@@ -49,10 +49,9 @@ export const socialLinks: SocialLink[] = [
 export const navigationItems: NavItem[] = [
   { id: 'hero', label: 'Home' },
   { id: 'about', label: 'Philosophy' },
-  { id: 'skills', label: 'Toolkit' },
-  { id: 'projects', label: 'Works', requires: 'projects' },
-  { id: 'experience', label: 'Career', requires: 'experience' },
-  { id: 'contact', label: 'Connect' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects', requires: 'projects' },
+  { id: 'experience', label: 'Experience', requires: 'experience' },
 ];
 
 export const aboutWorkingPrinciples: WorkingPrinciple[] = [

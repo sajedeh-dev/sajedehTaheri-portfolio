@@ -10,7 +10,7 @@ import { usePortfolioUi } from '@/components/layout/portfolio-ui';
 const projectCategories = ['All', 'Design System', 'Web App', 'Tooling', 'Open Source'] as const;
 
 /**
- * Selected works. Hidden until real projects are added to the data layer.
+ * Projects section. Hidden until real projects are added to the data layer.
  */
 export function Projects() {
   const { selectedProjectId, selectProject } = usePortfolioUi();
@@ -50,7 +50,7 @@ export function Projects() {
           <div>
             <div className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-rose-600 uppercase dark:text-rose-400">
               <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-              <span>Selected works</span>
+              <span>Projects</span>
             </div>
             <h2 className="font-display text-2xl tracking-tight text-stone-900 sm:text-3xl dark:text-stone-100">
               Frontend engineering & interface work
